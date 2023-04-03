@@ -1,14 +1,14 @@
 module Enumerable
   # Your code goes here
   def my_all?
-    each do |element|
+    my_each do |element|
       return false unless yield(element)
     end
     true
   end
 
   def my_any?
-    each do |element|
+    my_each do |element|
       return true if yield(element)
     end
     false
@@ -21,6 +21,7 @@ module Enumerable
       length
     end
   end
+
 end
 
 # You will first have to define my_each
@@ -35,6 +36,20 @@ class Array
       for element in self
         yield(element)
       end
+    else
+      self
+    end
+  end
+
+  def my_each_with_index
+    if block_given?
+      index = 0
+      for element in self
+        yield(element, index)
+        index += 1
+      end
+    else
+      self
     end
   end
 end
