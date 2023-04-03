@@ -13,6 +13,16 @@ module Enumerable
     end
     false
   end
+
+  def my_count
+    if block_given?
+      reduce(0) do |acc, element|
+        yield(element) ? acc + 1 : acc
+      end
+    else
+      length
+    end
+  end
 end
 
 # You will first have to define my_each
