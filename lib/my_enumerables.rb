@@ -22,6 +22,13 @@ module Enumerable
     end
   end
 
+  def my_inject(default = nil)
+    default.nil? ? accumulator = self[0] : accumulator = default
+    my_each do |element|
+      accumulator = yield(accumulator, element)
+    end
+    accumulator
+  end
 end
 
 # You will first have to define my_each
