@@ -16,9 +16,7 @@ module Enumerable
 
   def my_count
     if block_given?
-      reduce(0) do |acc, element|
-        yield(element) ? acc + 1 : acc
-      end
+      reduce(0) { |acc, element| yield(element) ? acc + 1 : acc }
     else
       length
     end
@@ -32,4 +30,11 @@ end
 class Array
   include Enumerable
   # Define my_each here
+  def my_each
+    if block_given?
+      for element in self
+        yield(element)
+      end
+    end
+  end
 end
