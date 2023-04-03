@@ -44,6 +44,14 @@ module Enumerable
     end
     true
   end
+
+  def my_select
+    selected = []
+    my_each do |element|
+      yield(element) ? selected << element : selected
+    end
+    selected
+  end
 end
 
 # You will first have to define my_each
